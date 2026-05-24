@@ -3,7 +3,6 @@ using namespace std;
 
 const int SIZE = 9;
 
-// Function to print the Sudoku board
 void printBoard(int board[SIZE][SIZE]) {
     for (int row = 0; row < SIZE; row++) {
         for (int col = 0; col < SIZE; col++) {
@@ -13,7 +12,6 @@ void printBoard(int board[SIZE][SIZE]) {
     }
 }
 
-// Check if number exists in row
 bool isRowSafe(int board[SIZE][SIZE], int row, int num) {
     for (int col = 0; col < SIZE; col++) {
         if (board[row][col] == num)
@@ -22,7 +20,6 @@ bool isRowSafe(int board[SIZE][SIZE], int row, int num) {
     return true;
 }
 
-// Check if number exists in column
 bool isColSafe(int board[SIZE][SIZE], int col, int num) {
     for (int row = 0; row < SIZE; row++) {
         if (board[row][col] == num)
@@ -31,7 +28,6 @@ bool isColSafe(int board[SIZE][SIZE], int col, int num) {
     return true;
 }
 
-// Check 3x3 subgrid
 bool isBoxSafe(int board[SIZE][SIZE], int startRow, int startCol, int num) {
     for (int row = 0; row < 3; row++) {
         for (int col = 0; col < 3; col++) {
@@ -42,20 +38,17 @@ bool isBoxSafe(int board[SIZE][SIZE], int startRow, int startCol, int num) {
     return true;
 }
 
-// Check whether placing number is valid
 bool isSafe(int board[SIZE][SIZE], int row, int col, int num) {
     return isRowSafe(board, row, num) &&
            isColSafe(board, col, num) &&
            isBoxSafe(board, row - row % 3, col - col % 3, num);
 }
 
-// Solve Sudoku using Backtracking
 bool solveSudoku(int board[SIZE][SIZE]) {
 
     int row, col;
     bool emptyFound = false;
 
-    // Find empty cell
     for (row = 0; row < SIZE; row++) {
         for (col = 0; col < SIZE; col++) {
             if (board[row][col] == 0) {
@@ -67,11 +60,9 @@ bool solveSudoku(int board[SIZE][SIZE]) {
             break;
     }
 
-    // If no empty cell exists
     if (!emptyFound)
         return true;
 
-    // Try numbers 1-9
     for (int num = 1; num <= 9; num++) {
 
         if (isSafe(board, row, col, num)) {
@@ -81,7 +72,6 @@ bool solveSudoku(int board[SIZE][SIZE]) {
             if (solveSudoku(board))
                 return true;
 
-            // Backtrack
             board[row][col] = 0;
         }
     }
