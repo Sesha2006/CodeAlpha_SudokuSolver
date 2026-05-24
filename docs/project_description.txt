@@ -1,0 +1,11 @@
+
+---
+
+# 📄 `docs/project_description.txt`
+
+```txt
+This project is a Sudoku Solver developed using C++ as part of the CodeAlpha Internship.
+
+The application uses the Backtracking Algorithm to solve Sudoku puzzles automatically. It verifies Sudoku conditions for rows, columns, and 3x3 subgrids before placing values into empty cells.
+
+The project demonstrates problem-solving skills, recursion, and algorithm implementation using C++.
